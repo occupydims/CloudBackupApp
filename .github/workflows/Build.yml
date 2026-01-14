@@ -20,19 +20,15 @@ jobs:
           java-version: "17"
           cache: gradle
 
-      # If your repo root IS the Android project root, remove "working-directory" from the next steps.
-      # If your repo root contains the folder "CloudBackupApp_with_ads", keep it.
       - name: Make Gradle wrapper executable
         run: chmod +x gradlew
-        working-directory: CloudBackupApp_with_ads
 
       - name: Build Debug APK
         run: ./gradlew assembleDebug --stacktrace
-        working-directory: CloudBackupApp_with_ads
 
       - name: Upload Debug APK
         uses: actions/upload-artifact@v4
         with:
           name: app-debug
-          path: CloudBackupApp_with_ads/app/build/outputs/apk/debug/*.apk
-
+          path: app/build/outputs/apk/debug/*.apk
+          
